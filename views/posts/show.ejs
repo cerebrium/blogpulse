@@ -1,16 +1,18 @@
 <h1>Title: <%= posts.title %></h1>
-<h2>By: <%= author.name %></h2>
+<h2>By: <%= comment.name %></h2>
 
 <p><%= posts.content %></p>
 
 <hr>
 <br><br><br>
-<h1>post a comment</h1>
-<% comment.forEach(function(ele) { %>
+<h1>Comments</h1>
+<% author.forEach(function(ele) { %>
     <p><%= ele.name %>: <%=ele.content %></p>
 <% }) %>
-<form action="/posts/<%= posts.id%>/comments" method="post">
-    <input type="text" name="comment" placeholder='ex: this post sucks!'>
-    <br>
+
+<br><br><br><br><br>
+<form action="/posts/<%= posts.id%>/comments" method="POST">
+    <input type="text" name="content" placeholder='ex: this post sucks!'>
+    <input type="text" name="name" placeholder="Ex: fred">
     <input type="submit" value="post comment">
 </form>

@@ -12,8 +12,12 @@ router.get(`/:id`, function(req, res) {
     db.post.findByPk(parseInt(req.params.id))
     .then(function(posts) {
         posts.getAuthor()
+        .then(function(comment) {
+            posts.getComments()
             .then(function(author) {
-                res.render(`posts/show`, {posts, author})
+                console.log(author)
+                res.render(`posts/show`, {posts, comment, author})
+            })
         })
     })
 })
@@ -22,8 +26,8 @@ router.post(`/:id/comments`, function(req, res) {
     db.post.findByPk(parseInt(req.params.id))
         .then(function(post) {
             post.createComment(req.body)
-                .then(function() {
-                    console.log(comment)
+                .then(function(comment) {
+                    console.log(comment.dataValues)
                     res.redirect(`/posts/${req.params.id}`)
             })
         })
