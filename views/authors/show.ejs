@@ -1,0 +1,19 @@
+<h1><%= author.name %></h1>
+<h2><%= author.mustacheSize %></h2>
+
+<hr>
+
+<h2>Posts By Author</h2>
+<% posts.forEach(function(ele) { %>
+    <p>Posts: <a href="/posts/<%= ele.id %>"><%= ele.title %></a></p>
+<% }) %>
+
+<hr>
+
+<h2>Would you like to add a new post?</h2>
+
+<form action="/authors/<%= author.id %>/posts" method="POST">
+    <input type="text" name="title" placeholder="title"><br />
+    <input type="text" name="content" placeholder="content"> <br />
+    <input type="submit" value="Add Post">
+</form>

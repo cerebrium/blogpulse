@@ -1,0 +1,16 @@
+<h1>Title: <%= posts.title %></h1>
+<h2>By: <%= author.name %></h2>
+
+<p><%= posts.content %></p>
+
+<hr>
+<br><br><br>
+<h1>post a comment</h1>
+<% comment.forEach(function(ele) { %>
+    <p><%= ele.name %>: <%=ele.content %></p>
+<% }) %>
+<form action="/posts/<%= posts.id%>/comments" method="post">
+    <input type="text" name="comment" placeholder='ex: this post sucks!'>
+    <br>
+    <input type="submit" value="post comment">
+</form>
